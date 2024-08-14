@@ -11,14 +11,59 @@ import (
 	"github.com/yskta/taskmaster/graph/model"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+// CreateUser is the resolver for the createUser field.
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
 }
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+// CreateProject is the resolver for the createProject field.
+func (r *mutationResolver) CreateProject(ctx context.Context, input model.NewProject) (*model.Project, error) {
+	panic(fmt.Errorf("not implemented: CreateProject - createProject"))
+}
+
+// CreateTask is the resolver for the createTask field.
+func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) (*model.Task, error) {
+	panic(fmt.Errorf("not implemented: CreateTask - createTask"))
+}
+
+// UpdateTask is the resolver for the updateTask field.
+func (r *mutationResolver) UpdateTask(ctx context.Context, id string, input model.NewTask) (*model.Task, error) {
+	panic(fmt.Errorf("not implemented: UpdateTask - updateTask"))
+}
+
+// DeleteTask is the resolver for the deleteTask field.
+func (r *mutationResolver) DeleteTask(ctx context.Context, id string) (bool, error) {
+	panic(fmt.Errorf("not implemented: DeleteTask - deleteTask"))
+}
+
+// Users is the resolver for the users field.
+func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
+	panic(fmt.Errorf("not implemented: Users - users"))
+}
+
+// User is the resolver for the user field.
+func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: User - user"))
+}
+
+// Projects is the resolver for the projects field.
+func (r *queryResolver) Projects(ctx context.Context) ([]*model.Project, error) {
+	panic(fmt.Errorf("not implemented: Projects - projects"))
+}
+
+// Project is the resolver for the project field.
+func (r *queryResolver) Project(ctx context.Context, id string) (*model.Project, error) {
+	panic(fmt.Errorf("not implemented: Project - project"))
+}
+
+// Tasks is the resolver for the tasks field.
+func (r *queryResolver) Tasks(ctx context.Context) ([]*model.Task, error) {
+	panic(fmt.Errorf("not implemented: Tasks - tasks"))
+}
+
+// Task is the resolver for the task field.
+func (r *queryResolver) Task(ctx context.Context, id string) (*model.Task, error) {
+	panic(fmt.Errorf("not implemented: Task - task"))
 }
 
 // Mutation returns MutationResolver implementation.
