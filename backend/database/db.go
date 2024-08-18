@@ -14,7 +14,7 @@ var DB *gorm.DB
 func InitDB() (*gorm.DB, error) {
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
-		dsn = "host=localhost user=postgres password=your_password dbname=taskmaster port=5432 sslmode=disable TimeZone=Asia/Tokyo"
+		dsn = "host=localhost user=postgres password=password dbname=taskmaster port=5432 sslmode=disable TimeZone=Asia/Tokyo"
 	}
 
 	var err error
