@@ -8,7 +8,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/yskta/taskmaster/graph/model"
+	"github.com/yskta/taskmaster/backend/graph/model"
 )
 
 // CreateUser is the resolver for the createUser field.

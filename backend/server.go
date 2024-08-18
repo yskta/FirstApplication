@@ -8,14 +8,14 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/joho/godotenv"
-	"github.com/yskta/taskmaster/database"
-	"github.com/yskta/taskmaster/graph"
-	"github.com/yskta/taskmaster/graph/generated"
+	"github.com/yskta/taskmaster/backend/database"
+	"github.com/yskta/taskmaster/backend/graph"
+	// "github.com/yskta/taskmaster/backend/graph/generated"
 )
 
 const defaultPort = "8080"
 
-func main() {
+func runServer() {
 	// Load .env file
 	err := godotenv.Load()
 	if err != nil {
