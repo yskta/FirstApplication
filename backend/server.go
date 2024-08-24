@@ -33,6 +33,19 @@ func runServer() {
 		log.Fatalf("Failed to initialize database: %v", err)
 	}
 
+	// -seed フラグが指定された場合、データベースにテストデータを投入する。
+	// go run main.go -seed
+	// seedData := flag.Bool("seed", false, "Seed the database with test data")
+	// flag.Parse()
+	// seedデータを投入する。
+	// if *seedData {
+	if err := database.SeedData(db); err != nil {
+		log.Fatalf("failed to seed data: %v", err)
+	}
+		// データベースにデータを投入したら終了する。
+		// return
+	// }
+
 	// Create a new resolver with the database connection
 	resolver := &graph.Resolver{DB: db}
 
