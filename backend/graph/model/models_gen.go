@@ -28,24 +28,23 @@ type Project struct {
 	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Description *string `json:"description,omitempty"`
-	User        *User   `json:"user"`
-	Tasks       []*Task `json:"tasks,omitempty"`
+	UserID      string  `json:"userId"`
 }
 
 type Query struct {
 }
 
 type Task struct {
-	ID          string   `json:"id"`
-	Title       string   `json:"title"`
-	Description *string  `json:"description,omitempty"`
-	Status      string   `json:"status"`
-	Project     *Project `json:"project"`
+	ID          string  `json:"id"`
+	Title       string  `json:"title"`
+	Description *string `json:"description,omitempty"`
+	Status      string  `json:"status"`
+	ProjectID   string  `json:"projectId"`
 }
 
 type User struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
-	Email    string     `json:"email"`
-	Projects []*Project `json:"projects,omitempty"`
+	ID       string `json:"id"`
+	Username string `json:"username"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
