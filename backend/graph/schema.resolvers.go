@@ -19,17 +19,17 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 		Password: input.Password,
 	}
 	if err := r.DB.Create(user).Error; err != nil {
-        return nil, fmt.Errorf("failed to create user: %v", err)
-    }
-    return user, nil
+		return nil, fmt.Errorf("failed to create user: %v", err)
+	}
+	return user, nil
 }
 
 // CreateProject is the resolver for the createProject field.
 func (r *mutationResolver) CreateProject(ctx context.Context, input model.NewProject) (*model.Project, error) {
 	project := &model.Project{
-		Name: input.Name,
+		Name:        input.Name,
 		Description: input.Description,
-		UserID: input.UserID,
+		UserID:      input.UserID,
 	}
 	if err := r.DB.Create(project).Error; err != nil {
 		return nil, fmt.Errorf("failed to create project: %v", err)
@@ -40,10 +40,10 @@ func (r *mutationResolver) CreateProject(ctx context.Context, input model.NewPro
 // CreateTask is the resolver for the createTask field.
 func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) (*model.Task, error) {
 	task := &model.Task{
-		Title: input.Title,
+		Title:       input.Title,
 		Description: input.Description,
-		Status: input.Status,
-		ProjectID: input.ProjectID,
+		Status:      input.Status,
+		ProjectID:   input.ProjectID,
 	}
 	if err := r.DB.Create(task).Error; err != nil {
 		return nil, fmt.Errorf("failed to create task: %v", err)
@@ -65,9 +65,9 @@ func (r *mutationResolver) DeleteTask(ctx context.Context, id string) (bool, err
 func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 	var users []*model.User
 	if err := r.DB.Find(&users).Error; err != nil {
-        return nil, fmt.Errorf("failed to fetch users: %v", err)
-    }
-    return users, nil
+		return nil, fmt.Errorf("failed to fetch users: %v", err)
+	}
+	return users, nil
 }
 
 // User is the resolver for the user field.

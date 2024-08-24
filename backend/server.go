@@ -15,6 +15,10 @@ import (
 
 const defaultPort = "8080"
 
+func main() {
+	log.Println("Hello, TaskMaster!")
+    runServer()
+}
 func runServer() {
 	// Load .env file
 	err := godotenv.Load()
@@ -33,10 +37,11 @@ func runServer() {
 		log.Fatalf("Failed to initialize database: %v", err)
 	}
 
+	// 一番初めだけコメントアウトを外して実行し、それ以降はコメントアウトを戻す。
 	//データベースにテストデータを投入する。
-	if err := database.SeedData(db); err != nil {
-		log.Fatalf("failed to seed data: %v", err)
-	}
+	// if err := database.SeedData(db); err != nil {
+	// 	log.Fatalf("failed to seed data: %v", err)
+	// }
 
 	// Create a new resolver with the database connection
 	resolver := &graph.Resolver{DB: db}

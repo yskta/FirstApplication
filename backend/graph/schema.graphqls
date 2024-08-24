@@ -5,15 +5,14 @@ type User {
   id: ID!
   username: String!
   email: String!
-  projects: [Project!]
+  password: String! # 注意: セキュリティ上の理由から、通常パスワードはAPIで返さないようにします
 }
 
 type Project {
   id: ID!
   name: String!
   description: String
-  user: User!
-  tasks: [Task!]
+  userId: ID! # UserID を追加
 }
 
 type Task {
@@ -21,7 +20,7 @@ type Task {
   title: String!
   description: String
   status: String!
-  project: Project!
+  projectId: ID! # ProjectID を追加
 }
 
 type Query {
