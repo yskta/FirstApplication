@@ -13,17 +13,42 @@ import (
 
 // CreateUser is the resolver for the createUser field.
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
+	user := &model.User{
+		Username: input.Username,
+		Email:    input.Email,
+		Password: input.Password,
+	}
+	if err := r.DB.Create(user).Error; err != nil {
+        return nil, fmt.Errorf("failed to create user: %v", err)
+    }
+    return user, nil
 }
 
 // CreateProject is the resolver for the createProject field.
 func (r *mutationResolver) CreateProject(ctx context.Context, input model.NewProject) (*model.Project, error) {
-	panic(fmt.Errorf("not implemented: CreateProject - createProject"))
+	project := &model.Project{
+		Name: input.Name,
+		Description: input.Description,
+		UserID: input.UserID,
+	}
+	if err := r.DB.Create(project).Error; err != nil {
+		return nil, fmt.Errorf("failed to create project: %v", err)
+	}
+	return project, nil
 }
 
 // CreateTask is the resolver for the createTask field.
 func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) (*model.Task, error) {
-	panic(fmt.Errorf("not implemented: CreateTask - createTask"))
+	task := &model.Task{
+		Title: input.Title,
+		Description: input.Description,
+		Status: input.Status,
+		ProjectID: input.ProjectID,
+	}
+	if err := r.DB.Create(task).Error; err != nil {
+		return nil, fmt.Errorf("failed to create task: %v", err)
+	}
+	return task, nil
 }
 
 // UpdateTask is the resolver for the updateTask field.
@@ -38,7 +63,11 @@ func (r *mutationResolver) DeleteTask(ctx context.Context, id string) (bool, err
 
 // Users is the resolver for the users field.
 func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
-	panic(fmt.Errorf("not implemented: Users - users"))
+	var users []*model.User
+	if err := r.DB.Find(&users).Error; err != nil {
+        return nil, fmt.Errorf("failed to fetch users: %v", err)
+    }
+    return users, nil
 }
 
 // User is the resolver for the user field.
@@ -48,7 +77,11 @@ func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error
 
 // Projects is the resolver for the projects field.
 func (r *queryResolver) Projects(ctx context.Context) ([]*model.Project, error) {
-	panic(fmt.Errorf("not implemented: Projects - projects"))
+	var projects []*model.Project
+	if err := r.DB.Find(&projects).Error; err != nil {
+		return nil, fmt.Errorf("failed to fetch projects: %v", err)
+	}
+	return projects, nil
 }
 
 // Project is the resolver for the project field.
@@ -58,7 +91,11 @@ func (r *queryResolver) Project(ctx context.Context, id string) (*model.Project,
 
 // Tasks is the resolver for the tasks field.
 func (r *queryResolver) Tasks(ctx context.Context) ([]*model.Task, error) {
-	panic(fmt.Errorf("not implemented: Tasks - tasks"))
+	var tasks []*model.Task
+	if err := r.DB.Find(&tasks).Error; err != nil {
+		return nil, fmt.Errorf("failed to fetch tasks: %v", err)
+	}
+	return tasks, nil
 }
 
 // Task is the resolver for the task field.
