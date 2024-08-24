@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"fmt"
+	"time"
 	"github.com/yskta/taskmaster/backend/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -19,10 +20,29 @@ func InitDB() (*gorm.DB, error) {
 	}
 
 	var err error
-	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		return nil, fmt.Errorf("failed to connect to database: %v", err)
+	var db *gorm.DB
+
+	// リトライの設定
+	maxRetries := 5
+	retryInterval := time.Second * 5
+
+	for i := 0; i < maxRetries; i++ {
+		db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+		if err == nil {
+			break
+		}
+		log.Printf("Failed to connect to database (attempt %d/%d): %v", i+1, maxRetries, err)
+		if i < maxRetries-1 {
+			log.Printf("Retrying in %v...", retryInterval)
+			time.Sleep(retryInterval)
+		}
 	}
+
+	if err != nil {
+		return nil, fmt.Errorf("failed to connect to database after %d attempts: %v", maxRetries, err)
+	}
+
+	DB = db
 
 	// マイグレーションの実行
 	err = DB.AutoMigrate(&models.User{}, &models.Project{}, &models.Task{})
