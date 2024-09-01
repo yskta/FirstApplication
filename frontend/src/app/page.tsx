@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
+import UsersList from '@/components/userslist';
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
@@ -12,8 +13,8 @@ export default function Home() {
   return (
     <main className="min-h-screen p-8">
       <h1 className="text-3xl font-bold mb-6">TaskMaster</h1>
-      
-      <section className="mb-8">
+      <UsersList />
+      {/* <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Projects</h2>
         <ul className="space-y-2">
           {projects.map(project => (
@@ -23,9 +24,9 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
+      </section> */}
 
-      <section>
+      {/* <section>
         <h2 className="text-2xl font-semibold mb-4">Create New Project</h2>
         <form className="space-y-4">
           <div>
@@ -40,7 +41,7 @@ export default function Home() {
             Create Project
           </button>
         </form>
-      </section>
+      </section> */}
     </main>
   );
 }
