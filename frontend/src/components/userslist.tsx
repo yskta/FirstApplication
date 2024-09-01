@@ -6,14 +6,14 @@ export default function UsersList() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
+  console.log(data.users);
   return (
     <ul>
-        {data.map((user: any) => (
-            <li key={user.id}>
-                {user.username} - {user.email}
-            </li>
-        ))}
+      {data.users.map((user: { id: string; name: string; email: string }) => (
+        <li key={user.id}>
+          {user.name} - {user.email}
+        </li>
+      ))}
     </ul>
   );
 }
